@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
-    <title>用户登录</title>
+    <title>登录易购</title>
     <link type="text/css" rel="stylesheet" href="/css/login.css"/>
     <script type="text/javascript" src="/js/jquery-1.6.4.js"></script>
 </head>
@@ -12,7 +12,7 @@
 <div class="w">
     <div id="logo">
     	<a href="http://localhost:8082" clstag="passport|keycount|login|01">
-    		<img src="/images/EGO-logo.gif" alt="Logo图片" width="170" height="60"/>
+    		<img src="/images/EGO-logo.gif" alt="易购" width="170" height="60"/>
     	</a><b></b>
    	</div>
 </div>
@@ -79,7 +79,7 @@
 					if (data.status == 200) {
 						alert("登录成功！");
 						if (redirectUrl == "") {
-							//如果用户没有要访问的页面，则直接跳转到首页
+							//如果用户没有要访问的页面，则直接跳转到商城首页
 							location.href = "http://localhost:8082";
 						} else {
 							//如果用户有要跳转的页面，则登录成功之后跳转到目标页面

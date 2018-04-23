@@ -28,6 +28,8 @@ public class UserController {
 	@ResponseBody
 	public Object check(@PathVariable String param, @PathVariable int type, String callback) {
 
+		System.out.println("sso-8084用户登录校验[" + param + "]" + "[" + type + "]");
+
 		ReadResult result = null;
 		if (type != 1 && type != 2 && type != 3) {
 			result = ReadResult.build(400, "校验内容错误，不知道是什么方式登录的");
@@ -72,6 +74,8 @@ public class UserController {
 	@RequestMapping(value = "/register")
 	@ResponseBody
 	public ReadResult createUser(TbUser user) {
+		System.out.println("sso-8084用户注册[" + user + "]");
+
 		ReadResult result = null;
 		try {
 			result = userService.createUser(user);
@@ -90,12 +94,16 @@ public class UserController {
 	 * @param password
 	 * @return
 	 */
-	@RequestMapping(value = "/login", method = RequestMethod.POST,produces=MediaType.APPLICATION_JSON_VALUE+";charset=utf-8")
+	@RequestMapping(value = "/login", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE
+			+ ";charset=utf-8")
 	@ResponseBody
-	public ReadResult userLogin(String username, String password,HttpServletRequest request,HttpServletResponse response) {
+	public ReadResult userLogin(String username, String password, HttpServletRequest request,
+			HttpServletResponse response) {
+		System.out.println("sso-8084用户登录 用户名[" + username + "],密码[" + password + "]");
+
 		ReadResult result = null;
 		try {
-			result = userService.userLogin(username, password,request,response);
+			result = userService.userLogin(username, password, request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return ReadResult.build(401, ExceptionUtil.getStackTrace(e));
@@ -107,8 +115,12 @@ public class UserController {
 	@ResponseBody
 	public Object getUserByToken(@PathVariable String token, String callback) {
 		ReadResult result = null;
+
+		System.out.println("sso-8084 token中获取用户信息 [" + token + "]");
+
 		try {
 			result = userService.getUserByToken(token);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			result.build(500, ExceptionUtil.getStackTrace(e));
